@@ -5,7 +5,7 @@
 int main(int argc, char* argv[]) {
 	FILE* p;
 	char *out = NULL;
-	int h,m,time;
+	int h,m,time,classTime;
 	size_t outlen = 0;
 
 	p = popen("date \"+%H:%M\"", "r");
@@ -18,10 +18,10 @@ int main(int argc, char* argv[]) {
 	getline(&out, &outlen, p);	//consume one line
 	while(getline(&out, &outlen, p) >= 0) {
 		sscanf(out, " - %d:%d%*s\n", &h, &m);
-		h = (h*60)+m;
+		classTime = (h*60)+m;
 		getline(&out, &outlen, p);
-		if(time < h) {
-			printf("%s", (out+1));
+		if(time < classTime) {
+			printf("(%d:%d) %s", h,m,(out+1));
 			break;
 		}
 	}
