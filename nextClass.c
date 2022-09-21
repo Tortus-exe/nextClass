@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
 		classTime = (h*60)+m;
 		getline(&out, &outlen, p);
 		if(time < classTime) {
-			printf("(%d:%d) %s", h,m,(out+1));
+			printf("(%d:%02d) %s", h,m,(out+1));
 			break;
 		}
 	}
